@@ -1,13 +1,7 @@
 import {Http} from './NetworkHttp'
+import Menu from './Menu'
 
-interface Menu {
-    id: number
-    category: string
-    title: string
-    people: number
-}
-
-interface MenuRepo {
+export default interface MenuRepo {
     menu(): Promise<Menu>
 }
 
