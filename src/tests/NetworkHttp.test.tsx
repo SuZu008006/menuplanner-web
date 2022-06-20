@@ -15,7 +15,6 @@ describe('network http', () => {
             ) as jest.Mock
 
             networkHttp = new NetworkHttp()
-
         })
 
         test('return URL arg. to fetch', async () => {
