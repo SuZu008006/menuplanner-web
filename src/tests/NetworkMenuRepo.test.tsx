@@ -16,7 +16,7 @@ describe('Network menu repository', () => {
             ])
 
 
-            const returnedMenu = await networkMenuRepo.menu()
+            const returnedMenu = await networkMenuRepo.menuList()
 
 
             expect(returnedMenu).toEqual([{'id': '1'}])

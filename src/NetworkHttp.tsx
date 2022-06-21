@@ -13,5 +13,4 @@ export class NetworkHttp implements Http {
         const response = await fetch(this.serverUrl + url)
         return Promise.resolve(response.json())
     }
-
 }

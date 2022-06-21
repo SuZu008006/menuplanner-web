@@ -10,7 +10,7 @@ describe('network http', () => {
 
             global.fetch = jest.fn(() =>
                 Promise.resolve({
-                    json: () => Promise.resolve([{test: '100'}]),
+                    json: () => Promise.resolve([{test: '100'},]),
                 }),
             ) as jest.Mock
 
@@ -25,7 +25,7 @@ describe('network http', () => {
         })
 
         test('return JSON to fetch', async () => {
-            const responseJsonAsObject = await networkHttp.get('')
+            const responseJsonAsObject = await networkHttp.get('/api/menu')
 
 
             expect(responseJsonAsObject).toEqual([{test: '100'}])

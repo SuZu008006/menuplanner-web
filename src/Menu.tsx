@@ -1,6 +1,6 @@
 export default interface Menu {
-    id: number
+    id: string
     category: string
     title: string
-    people: number
+    people: string
 }

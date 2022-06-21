@@ -7,7 +7,8 @@ export interface AppProps {
     menuRepo: MenuRepo,
 }
 
-export default function App() {
+export default function App(props: AppProps) {
+    const {menuRepo} = props
     return (
         <>
             <header className="App-header">
@@ -15,7 +16,7 @@ export default function App() {
             <div className="App">
             </div>
             <Routes>
-                <Route path="/menuList" element={<MenuListScreen/>}/>
+                <Route path="/menuList" element={<MenuListScreen menuRepo={menuRepo}/>}/>
             </Routes>
         </>
     )

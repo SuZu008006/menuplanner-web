@@ -2,7 +2,7 @@ import {Http} from './NetworkHttp'
 import Menu from './Menu'
 
 export default interface MenuRepo {
-    menu(): Promise<Menu>
+    menuList(): Promise<Menu[]>
 }
 
 export class NetworkMenuRepo implements MenuRepo {
@@ -12,7 +12,7 @@ export class NetworkMenuRepo implements MenuRepo {
         this.http = http
     }
 
-    async menu(): Promise<Menu> {
-        return await this.http.get('/api/menu') as Menu
+    async menuList(): Promise<Menu[]> {
+        return await this.http.get('/api/menu') as Menu[]
     }
 }

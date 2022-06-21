@@ -1,11 +1,11 @@
 import React from 'react'
 import {BrowserRouter} from 'react-router-dom'
-import App from './App'
+import App, {AppProps} from './App'
 
-export default function AppNavigation() {
+export default function AppNavigation(props: { appProps: AppProps }) {
     return (
         <BrowserRouter>
-            <App/>
+            <App {...props.appProps}/>
         </BrowserRouter>
     )
 }
