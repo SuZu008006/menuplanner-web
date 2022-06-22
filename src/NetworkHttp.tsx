@@ -10,7 +10,7 @@ export class NetworkHttp implements Http {
     }
 
     async get(url: string): Promise<object> {
-        const response = await fetch(this.serverUrl + url)
+        const response = await fetch((this.serverUrl + url))
         return Promise.resolve(response.json())
     }
 }
