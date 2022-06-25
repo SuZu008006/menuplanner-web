@@ -14,10 +14,17 @@ export default function MenuListScreen(props: {
         })()
     }, [props.menuRepo])
 
+    const dayOfWeek = ['月', '火', '水', '木', '金']
+
     return (
         <>
-            <div>月</div>
-            <div>{menu?.[0].title}</div>
+            {dayOfWeek.map((day, index) =>
+                <div key={index}>
+                    <span>{day}</span>
+                    <span>: </span>
+                    <span>{menu?.[index].title}</span>
+                </div>
+            )}
         </>
     )
 }
