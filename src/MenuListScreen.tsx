@@ -1,11 +1,10 @@
 import MenuRepo from './NetworkMenuRepo'
-import Menu from './Menu'
 import {useEffect, useState} from 'react'
 
 export default function MenuListScreen(props: {
     menuRepo: MenuRepo
 }) {
-    const [menu, setMenu] = useState<Menu[]>()
+    const [menu, setMenu] = useState<String[]>()
 
     useEffect(() => {
         (async () => {
@@ -22,7 +21,7 @@ export default function MenuListScreen(props: {
                 <div key={index}>
                     <span>{day}</span>
                     <span>: </span>
-                    <span>{menu?.[index].title}</span>
+                    <span>{menu?.[index]}</span>
                 </div>
             )}
         </>
