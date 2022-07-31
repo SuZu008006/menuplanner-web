@@ -12,6 +12,6 @@ export class NetworkMenuRepo implements MenuRepo {
     }
 
     async menuList(): Promise<String[]> {
-        return await this.http.get('/') as String[]
+        return await this.http.get('') as String[]
     }
 }
