@@ -28,4 +28,35 @@ describe('Network menu repository', () => {
             }])
         })
     })
+
+    describe('ingredient', () => {
+        test('return JSON by parse as array', async () => {
+            spyStubNetworkHttp = new SpyStubHttp()
+            networkMenuRepo = new NetworkMenuRepo(spyStubNetworkHttp)
+
+            spyStubNetworkHttp.get_returnValue = Promise.resolve([
+                {
+                    'ingredient_id': 1,
+                    'id': 1,
+                    'item': 'itemNameOne',
+                    'quantity': 10,
+                    'weight': 100
+                },
+            ])
+
+
+            const returnedMenu = await networkMenuRepo.menuDetail(1)
+
+
+            expect(returnedMenu).toEqual([
+                {
+                    'ingredient_id': 1,
+                    'id': 1,
+                    'item': 'itemNameOne',
+                    'quantity': 10,
+                    'weight': 100
+                },
+            ])
+        })
+    })
 })
