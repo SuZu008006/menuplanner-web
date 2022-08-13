@@ -1,0 +1,62 @@
+$yu-gothic-for-mac: 'YuGothic';
+$yu-gothic-for-windows: 'Yu Gothic';
+
+%default-font-family {
+  font-family: $yu-gothic-for-mac, $yu-gothic-for-windows, sans-serif;
+}
+
+.bodyBold {
+  @extend %default-font-family;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.bodyRegular {
+  @extend %default-font-family;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.bodyLargeRegular {
+  @extend %default-font-family;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.bodyLineHeight16 {
+  @extend %default-font-family;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.buttonLarge {
+  @extend %default-font-family;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 16px;
+}
+
+.button {
+  @extend %default-font-family;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.caption {
+  @extend %default-font-family;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 12px;
+}
