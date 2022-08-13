@@ -23,15 +23,13 @@ describe('menu detail screen', () => {
                 ingredient_id: 1,
                 id: 1,
                 item: 'itemNameOne',
-                quantity: 10,
-                weight: 100
+                quantity: '大さじ1',
             },
             {
                 ingredient_id: 2,
                 id: 1,
                 item: 'itemNameTwo',
-                quantity: 20,
-                weight: 200
+                quantity: '大さじ2',
             },
         ]
         spyStubMenuRepo.ingredient_returnValue = Promise.resolve(ingredientResult)
@@ -40,6 +38,6 @@ describe('menu detail screen', () => {
         await renderApplication('menuDetail/1', appProps)
 
 
-        expect(screen.getByText('itemNameOne,10,100')).toBeInTheDocument()
+        expect(screen.getByText('itemNameOne,大さじ1')).toBeInTheDocument()
     })
 })

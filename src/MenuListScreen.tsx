@@ -2,6 +2,10 @@ import {useEffect, useState} from 'react'
 import Menu from './Menu'
 import {useNavigate} from 'react-router-dom'
 import MenuRepo from './NetworkMenuRepo'
+import classNames from 'classnames'
+import styles from './styles/MenuListScreen.module.scss'
+import textStyles from './styles/TextStyle.module.scss'
+import colorStyles from './styles/ColorStyle.module.scss'
 
 export default function MenuListScreen(props: {
     menuRepo: MenuRepo
@@ -26,10 +30,16 @@ export default function MenuListScreen(props: {
     return (
         <>
             {dayOfWeek.map((day, index) =>
-                <div key={index}>
-                    <span>{day}</span>
-                    <span>: </span>
-                    <span onClick={() => onClickTitle(index + 1)}>{menu?.[index].title}</span>
+                <div className={styles.menuRow} key={index}>
+                    <div className={
+                        classNames(
+                            styles.dayOfWeek,
+                            textStyles.bodyLargeRegular,
+                            colorStyles.primary800,
+                        )}
+                    >{day}</div>
+                    <div>:</div>
+                    <div onClick={() => onClickTitle(index + 1)}>{menu?.[index].title}</div>
                 </div>
             )}
         </>

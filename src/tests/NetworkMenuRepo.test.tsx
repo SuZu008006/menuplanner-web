@@ -39,8 +39,7 @@ describe('Network menu repository', () => {
                     'ingredient_id': 1,
                     'id': 1,
                     'item': 'itemNameOne',
-                    'quantity': 10,
-                    'weight': 100
+                    'quantity': '大さじ1',
                 },
             ])
 
@@ -53,8 +52,7 @@ describe('Network menu repository', () => {
                     'ingredient_id': 1,
                     'id': 1,
                     'item': 'itemNameOne',
-                    'quantity': 10,
-                    'weight': 100
+                    'quantity': '大さじ1',
                 },
             ])
         })
