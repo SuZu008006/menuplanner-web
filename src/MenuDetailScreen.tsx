@@ -22,7 +22,8 @@ export function MenuDetailScreen(props: {
             {ingredient?.map((ingredient, index) =>
                 <div key={index}>
                     {ingredient.item},
-                    {ingredient.quantity}
+                    {ingredient.quantity},
+                    {ingredient.scale}
                 </div>
             )}
         </>
