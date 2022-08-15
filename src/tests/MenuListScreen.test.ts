@@ -58,7 +58,7 @@ describe('menu list screen', () => {
         await renderApplication('/menuList', appProps)
         const menuElement = screen.getByText('title1')
 
-        userEvent.click(menuElement)
+        await userEvent.click(menuElement)
 
 
         expect(window.location.pathname).toEqual('/menuDetail/1')
