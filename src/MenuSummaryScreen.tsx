@@ -17,10 +17,19 @@ export default function MenuSummaryScreen(props: {
         })()
     }, [props.menuRepo])
 
+    const sevenDays = [1, 2, 3, 4, 5, 6, 7]
+    const ingredientList = sevenDays.map(day =>
+        sessionStorage.getItem((day - 1).toString())
+    )
 
     return (
         <>
             お買い物リストの予定（工事中…）
+            {ingredientList.map(ingredient => {
+                return <div>
+                    {ingredient}
+                </div>
+            })}
         </>
     )
 }

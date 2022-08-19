@@ -18,6 +18,9 @@ export default function MenuListScreen(props: {
         (async () => {
             const result = await props.menuRepo.menuList()
             setMenu(result)
+            result.forEach((menu, index) => {
+                sessionStorage.setItem(index.toString(), menu.id)
+            })
         })()
     }, [props.menuRepo])
 
