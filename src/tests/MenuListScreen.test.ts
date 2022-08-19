@@ -3,13 +3,23 @@ import renderApplication from './RenderApplication'
 import Menu from '../Menu'
 import {AppProps} from '../App'
 import {AppPropsBuilder} from '../AppPropsBuilder'
-import {screen} from '@testing-library/react'
+import {screen, within} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import {SpyStubMenuRepo} from './SpyStubMenuRepo'
 
 describe('menu list screen', () => {
     let spyStubMenuRepo: SpyStubMenuRepo
     let appProps: AppProps
+
+    const menuResult: Menu[] = [
+        {id: '1', title: 'title1'},
+        {id: '2', title: 'title2'},
+        {id: '3', title: 'title3'},
+        {id: '4', title: 'title4'},
+        {id: '5', title: 'title5'},
+        {id: '6', title: 'title6'},
+        {id: '7', title: 'title7'},
+    ]
 
     beforeEach(() => {
         spyStubMenuRepo = new SpyStubMenuRepo()
@@ -19,15 +29,6 @@ describe('menu list screen', () => {
     })
 
     test('display the menu list around week', async () => {
-        const menuResult: Menu[] = [
-            {id: '1', title: 'title1'},
-            {id: '2', title: 'title2'},
-            {id: '3', title: 'title3'},
-            {id: '4', title: 'title4'},
-            {id: '5', title: 'title5'},
-            {id: '6', title: 'title6'},
-            {id: '7', title: 'title7'},
-        ]
         spyStubMenuRepo.menu_returnValue = Promise.resolve(menuResult)
 
 
@@ -51,24 +52,43 @@ describe('menu list screen', () => {
     })
 
     test('display the menu detail when click menu list of target menu', async () => {
-        const menuResult: Menu[] = [
-            {id: '1', title: 'title1'},
-            {id: '2', title: 'title2'},
-            {id: '3', title: 'title3'},
-            {id: '4', title: 'title4'},
-            {id: '5', title: 'title5'},
-            {id: '6', title: 'title6'},
-            {id: '7', title: 'title7'},
-        ]
         spyStubMenuRepo.menu_returnValue = Promise.resolve(menuResult)
-
 
         await renderApplication('/menuList', appProps)
         const menuElement = screen.getByText('title1')
+
 
         await userEvent.click(menuElement)
 
 
         expect(window.location.pathname).toEqual('/menuDetail/1')
+    })
+
+
+    test('display the menu summary button', async () => {
+        spyStubMenuRepo.menu_returnValue = Promise.resolve(menuResult)
+
+
+        await renderApplication('/menuList', appProps)
+
+
+        const buttonElement = screen.getByRole('button')
+
+        expect(buttonElement).toBeInTheDocument()
+        expect(within(buttonElement).getByText('go to felna')).toBeInTheDocument()
+    })
+
+    test('display the menu summary when click menu list of summary button', async () => {
+        spyStubMenuRepo.menu_returnValue = Promise.resolve(menuResult)
+
+        await renderApplication('/menuList', appProps)
+
+        const buttonElement = screen.getByRole('button')
+
+
+        await userEvent.click(buttonElement)
+
+
+        expect(window.location.pathname).toEqual('/menuSummary')
     })
 })

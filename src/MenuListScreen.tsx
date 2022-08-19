@@ -27,27 +27,38 @@ export default function MenuListScreen(props: {
         navigate(`/menuDetail/${menuCode}`, {state: {from: window.location}})
     }
 
+    const onClickSummary = () => {
+        navigate(`/menuSummary`, {state: {from: window.location}})
+    }
+
     return (
         <>
             {dayOfWeek.map((day, index) =>
                 <div className={styles.menuRow} key={index}>
-                    <div className={
-                        classNames(
-                            styles.dayOfWeek,
-                            textStyles.bodyLargeRegular,
-                            colorStyles.primary800,
-                        )
-                    }>
+                    <div
+                        className={
+                            classNames(
+                                styles.dayOfWeek,
+                                textStyles.bodyLargeRegular,
+                                colorStyles.primary800,
+                            )
+                        }
+                    >
                         {day}
                     </div>
                     <div>:</div>
-                    <div onClick={
-                        () => onClickTitle(Number(menu?.[index].id))
-                    }>
+                    <div
+                        onClick={() => onClickTitle(Number(menu?.[index].id))}
+                    >
                         {menu?.[index].title}
                     </div>
                 </div>
             )}
+            <button
+                onClick={() => onClickSummary()}
+            >
+                go to felna
+            </button>
         </>
     )
 }

@@ -1,7 +1,8 @@
 import React from 'react'
 import {Route, Routes} from 'react-router-dom'
 import MenuListScreen from './MenuListScreen'
-import {MenuDetailScreen} from './MenuDetailScreen'
+import MenuDetailScreen from './MenuDetailScreen'
+import MenuSummaryScreen from './MenuSummaryScreen'
 import MenuRepo from './NetworkMenuRepo'
 
 export interface AppProps {
@@ -19,6 +20,7 @@ export default function App(props: AppProps) {
             <Routes>
                 <Route path="/menuList" element={<MenuListScreen menuRepo={menuRepo}/>}/>
                 <Route path="/menuDetail/:menuCode" element={<MenuDetailScreen menuRepo={menuRepo}/>}/>
+                <Route path="/menuSummary" element={<MenuSummaryScreen menuRepo={menuRepo}/>}/>
             </Routes>
         </>
     )

@@ -3,7 +3,7 @@ import {useEffect, useState} from 'react'
 import Ingredient from './Ingredient'
 import {useParams} from 'react-router-dom'
 
-export function MenuDetailScreen(props: {
+export default function MenuDetailScreen(props: {
     menuRepo: MenuRepo
 }) {
     const [ingredient, setIngredient] = useState<Ingredient[]>()
