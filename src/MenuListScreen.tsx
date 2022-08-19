@@ -36,10 +36,16 @@ export default function MenuListScreen(props: {
                             styles.dayOfWeek,
                             textStyles.bodyLargeRegular,
                             colorStyles.primary800,
-                        )}
-                    >{day}</div>
+                        )
+                    }>
+                        {day}
+                    </div>
                     <div>:</div>
-                    <div onClick={() => onClickTitle(index + 1)}>{menu?.[index].title}</div>
+                    <div onClick={
+                        () => onClickTitle(Number(menu?.[index].id))
+                    }>
+                        {menu?.[index].title}
+                    </div>
                 </div>
             )}
         </>
