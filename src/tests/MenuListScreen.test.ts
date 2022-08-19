@@ -25,6 +25,8 @@ describe('menu list screen', () => {
             {id: '3', title: 'title3'},
             {id: '4', title: 'title4'},
             {id: '5', title: 'title5'},
+            {id: '6', title: 'title6'},
+            {id: '7', title: 'title7'},
         ]
         spyStubMenuRepo.menu_returnValue = Promise.resolve(menuResult)
 
@@ -42,6 +44,10 @@ describe('menu list screen', () => {
         expect(screen.getByText('title4')).toBeInTheDocument()
         expect(screen.getByText('金')).toBeInTheDocument()
         expect(screen.getByText('title5')).toBeInTheDocument()
+        expect(screen.getByText('土')).toBeInTheDocument()
+        expect(screen.getByText('title6')).toBeInTheDocument()
+        expect(screen.getByText('日')).toBeInTheDocument()
+        expect(screen.getByText('title7')).toBeInTheDocument()
     })
 
     test('display the menu detail when click menu list of target menu', async () => {
@@ -51,6 +57,8 @@ describe('menu list screen', () => {
             {id: '3', title: 'title3'},
             {id: '4', title: 'title4'},
             {id: '5', title: 'title5'},
+            {id: '6', title: 'title6'},
+            {id: '7', title: 'title7'},
         ]
         spyStubMenuRepo.menu_returnValue = Promise.resolve(menuResult)
 

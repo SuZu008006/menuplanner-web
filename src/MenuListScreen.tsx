@@ -21,7 +21,7 @@ export default function MenuListScreen(props: {
         })()
     }, [props.menuRepo])
 
-    const dayOfWeek = ['月', '火', '水', '木', '金']
+    const dayOfWeek = ['月', '火', '水', '木', '金', '土', '日']
 
     const onClickTitle = (menuCode: number) => {
         navigate(`/menuDetail/${menuCode}`, {state: {from: window.location}})
