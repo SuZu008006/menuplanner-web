@@ -91,4 +91,32 @@ describe('menu list screen', () => {
 
         expect(window.location.pathname).toEqual('/menuSummary')
     })
+
+    test('menuIdList get to sessionStorage', async () => {
+        function isCheckSessionStorageInEmpty(): Boolean {
+            let isEmpty: Boolean = true
+            menuResult.forEach(it => {
+                if (sessionStorage.getItem((Number(it.id) - 1).toString())) {
+                    isEmpty = false
+                }
+            })
+            return isEmpty
+        }
+
+        sessionStorage.clear()
+        spyStubMenuRepo.menu_returnValue = Promise.resolve(menuResult)
+
+        const actualStatusBeforeRender = isCheckSessionStorageInEmpty()
+        await renderApplication('/menuList', appProps)
+        const actualStatusAfterRender = isCheckSessionStorageInEmpty()
+
+        const buttonElement = screen.getByRole('button')
+
+
+        await userEvent.click(buttonElement)
+
+
+        expect(actualStatusBeforeRender).toEqual(true)
+        expect(actualStatusAfterRender).toEqual(false)
+    })
 })
