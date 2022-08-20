@@ -15,4 +15,8 @@ export class SpyStubMenuRepo implements MenuRepo {
     menuDetail(id: number): Promise<Ingredient[]> {
         return this.ingredient_returnValue
     }
+
+    menuSummary(idList: number[]): Promise<Ingredient[]> {
+        return this.ingredient_returnValue
+    }
 }

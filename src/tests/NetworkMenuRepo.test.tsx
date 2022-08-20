@@ -29,7 +29,7 @@ describe('Network menu repository', () => {
         })
     })
 
-    describe('ingredient', () => {
+    describe('menuDetail(ingredient)', () => {
         test('return JSON by parse as array', async () => {
             spyStubNetworkHttp = new SpyStubHttp()
             networkMenuRepo = new NetworkMenuRepo(spyStubNetworkHttp)
@@ -39,7 +39,8 @@ describe('Network menu repository', () => {
                     'ingredient_id': 1,
                     'id': 1,
                     'item': 'itemNameOne',
-                    'quantity': '大さじ1',
+                    'quantity': '1',
+                    'scale': 'g',
                 },
             ])
 
@@ -52,9 +53,40 @@ describe('Network menu repository', () => {
                     'ingredient_id': 1,
                     'id': 1,
                     'item': 'itemNameOne',
-                    'quantity': '大さじ1',
+                    'quantity': '1',
+                    'scale': 'g',
                 },
             ])
+        })
+    })
+
+    describe('menuSummary(a week of ingredient)', () => {
+        test('return JSON by parse as array', async () => {
+            spyStubNetworkHttp = new SpyStubHttp()
+            networkMenuRepo = new NetworkMenuRepo(spyStubNetworkHttp)
+
+            spyStubNetworkHttp.get_returnValue = Promise.resolve([
+                {
+                    'ingredient_id': 1,
+                    'id': 1,
+                    'item': 'itemNameOne',
+                    'quantity': '1',
+                    'scale': 'g',
+                },
+            ])
+
+
+            const returnedMenu
+                = await networkMenuRepo.menuSummary([1, 2, 3, 4, 5, 6, 7])
+
+
+            expect(returnedMenu).toEqual([{
+                'ingredient_id': 1,
+                'id': 1,
+                'item': 'itemNameOne',
+                'quantity': '1',
+                'scale': 'g',
+            },])
         })
     })
 })

@@ -6,6 +6,7 @@ import {AppPropsBuilder} from '../AppPropsBuilder'
 import {screen, within} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import {SpyStubMenuRepo} from './SpyStubMenuRepo'
+import Ingredient from '../Ingredient'
 
 describe('menu list screen', () => {
     let spyStubMenuRepo: SpyStubMenuRepo
@@ -19,6 +20,15 @@ describe('menu list screen', () => {
         {id: '5', title: 'title5'},
         {id: '6', title: 'title6'},
         {id: '7', title: 'title7'},
+    ]
+    const ingredientResult: Ingredient[] = [
+        {
+            ingredient_id: 9999,
+            id: 9999,
+            item: 'itemName',
+            quantity: 99.99,
+            scale: 'scale'
+        },
     ]
 
     beforeEach(() => {
@@ -80,6 +90,7 @@ describe('menu list screen', () => {
 
     test('display the menu summary when click menu list of summary button', async () => {
         spyStubMenuRepo.menu_returnValue = Promise.resolve(menuResult)
+        spyStubMenuRepo.ingredient_returnValue = Promise.resolve(ingredientResult)
 
         await renderApplication('/menuList', appProps)
 
@@ -105,6 +116,7 @@ describe('menu list screen', () => {
 
         sessionStorage.clear()
         spyStubMenuRepo.menu_returnValue = Promise.resolve(menuResult)
+        spyStubMenuRepo.ingredient_returnValue = Promise.resolve(ingredientResult)
 
         const actualStatusBeforeRender = isCheckSessionStorageInEmpty()
         await renderApplication('/menuList', appProps)
