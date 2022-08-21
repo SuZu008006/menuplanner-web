@@ -1,0 +1,17 @@
+@import './ColorStyle.module';
+
+.appTitle {
+  top: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+  background-color: $shades0;
+  padding: 10px 0 4px 10px;
+  font-weight: bold;
+  color: $shades9;
+}
+
+body {
+  background: $tints7;
+  margin-top: 50px;
+}
