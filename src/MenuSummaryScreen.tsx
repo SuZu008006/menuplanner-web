@@ -7,8 +7,8 @@ import IngredientSummary from './IngredientSummary'
 export default function MenuSummaryScreen(props: {
     menuRepo: MenuRepo
 }) {
-    const [ingredient, setIngredient] = useState<Ingredient[]>()
     const [ingredientSummary, setIngredientSummary] = useState<IngredientSummary[]>()
+    const [ingredientMatrix, setIngredientMatrix] = useState<Ingredient[][]>()
 
     const sevenDays = [0, 1, 2, 3, 4, 5, 6]
     const sevenIdList = sevenDays.map(day =>
@@ -63,28 +63,29 @@ export default function MenuSummaryScreen(props: {
                 })
             })
 
-            setIngredient(result)
             setIngredientSummary(resultGroupByItem)
+            setIngredientMatrix(resultMatrix)
         })()
     }, [props.menuRepo])
 
 
-    return <>
-        お買い物リストの予定（工事中…）
-        {ingredient?.map((ingredient, index) =>
-            <div aria-label="ingredient" key={index}>
-                {ingredient.item},
-                {ingredient.quantity},
-                {ingredient.scale}
-            </div>
-        )}
-        {ingredientSummary?.map((ingredient, index) =>
-            <div aria-label="ingredientSummary" key={index}>
-                {ingredient.count},
-                {ingredient.item},
-                {ingredient.quantity},
-                {ingredient.scale}
-            </div>
-        )}
-    </>
+    return (
+        <>
+            お買い物リストの予定（工事中…）
+            {ingredientSummary?.map((ingredient, summaryIndex) => {
+                return <details key={'details' + summaryIndex}>
+                    <summary aria-label="ingredientSummary" key={'summary' + summaryIndex}>
+                        {ingredient.item},
+                        {ingredient.quantity},
+                        {ingredient.scale}
+                    </summary>
+                    {ingredientMatrix![summaryIndex].map((ingredient, index) =>
+                        <div aria-label="ingredient" key={'summary' + summaryIndex + 'ingredient' + index}>
+                            {ingredient.quantity},
+                        </div>
+                    )}
+                </details>
+            })}
+        </>
+    )
 }

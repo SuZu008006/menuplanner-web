@@ -52,7 +52,7 @@ describe('menu summary screen', () => {
                 ingredient_id: 9999,
                 id: 9999,
                 item: 'itemNameA',
-                quantity: 1.0,
+                quantity: 2.0,
                 scale: 'scaleTwo'
             },
         ]
@@ -66,8 +66,8 @@ describe('menu summary screen', () => {
         const ingredientElement = screen.getAllByLabelText('ingredient')
 
         expect(ingredientElement.length).toEqual(2)
-        expect(within(ingredientElement[0]).getByText('itemNameA,1,scaleTwo')).toBeInTheDocument()
-        expect(within(ingredientElement[1]).getByText('itemNameB,1,scaleOne')).toBeInTheDocument()
+        expect(within(ingredientElement[0]).getByText('2,')).toBeInTheDocument()
+        expect(within(ingredientElement[1]).getByText('1,')).toBeInTheDocument()
     })
 
     test('display ingredient list that was sorted by scales name', async () => {
@@ -76,7 +76,7 @@ describe('menu summary screen', () => {
                 ingredient_id: 9999,
                 id: 9999,
                 item: 'itemName',
-                quantity: 1.0,
+                quantity: 2.0,
                 scale: 'scaleTwo'
             },
             {
@@ -97,8 +97,8 @@ describe('menu summary screen', () => {
         const ingredientElement = screen.getAllByLabelText('ingredient')
 
         expect(ingredientElement.length).toEqual(2)
-        expect(within(ingredientElement[0]).getByText('itemName,1,scaleOne')).toBeInTheDocument()
-        expect(within(ingredientElement[1]).getByText('itemName,1,scaleTwo')).toBeInTheDocument()
+        expect(within(ingredientElement[0]).getByText('1,')).toBeInTheDocument()
+        expect(within(ingredientElement[1]).getByText('2,')).toBeInTheDocument()
     })
 
     test('display sum quantity at ingredient when is identical with its item', async () => {
@@ -163,9 +163,9 @@ describe('menu summary screen', () => {
         const ingredientElement = screen.getAllByLabelText('ingredientSummary')
 
         expect(ingredientElement.length).toEqual(3)
-        expect(within(ingredientElement[0]).getByText('3,itemNameOne,0.75,scale')).toBeInTheDocument()
-        expect(within(ingredientElement[1]).getByText('1,itemNameThree,1.5,scale')).toBeInTheDocument()
-        expect(within(ingredientElement[2]).getByText('3,itemNameTwo,2.65,scale')).toBeInTheDocument()
+        expect(within(ingredientElement[0]).getByText('itemNameOne,0.75,scale')).toBeInTheDocument()
+        expect(within(ingredientElement[1]).getByText('itemNameThree,1.5,scale')).toBeInTheDocument()
+        expect(within(ingredientElement[2]).getByText('itemNameTwo,2.65,scale')).toBeInTheDocument()
     })
 
     test('condition sum quantity is that ingredient and scale is unique', async () => {
@@ -195,8 +195,8 @@ describe('menu summary screen', () => {
         const ingredientElement = screen.getAllByLabelText('ingredientSummary')
 
         expect(ingredientElement.length).toEqual(2)
-        expect(within(ingredientElement[0]).getByText('1,itemName,0.15,scaleOne')).toBeInTheDocument()
-        expect(within(ingredientElement[1]).getByText('1,itemName,0.25,scaleTwo')).toBeInTheDocument()
+        expect(within(ingredientElement[0]).getByText('itemName,0.15,scaleOne')).toBeInTheDocument()
+        expect(within(ingredientElement[1]).getByText('itemName,0.25,scaleTwo')).toBeInTheDocument()
     })
 
 })
