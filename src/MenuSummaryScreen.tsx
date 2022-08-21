@@ -1,5 +1,4 @@
 import {useEffect, useState} from 'react'
-import {useNavigate, useParams} from 'react-router-dom'
 import MenuRepo from './NetworkMenuRepo'
 import Ingredient from './Ingredient'
 import IngredientSummary from './IngredientSummary'
@@ -11,65 +10,64 @@ export default function MenuSummaryScreen(props: {
     const [ingredient, setIngredient] = useState<Ingredient[]>()
     const [ingredientSummary, setIngredientSummary] = useState<IngredientSummary[]>()
 
-
-    const idList = useParams().idList ?? []
+    const sevenDays = [0, 1, 2, 3, 4, 5, 6]
+    const sevenIdList = sevenDays.map(day =>
+        Number(sessionStorage.getItem(String((day))))
+    )
 
     useEffect(() => {
         (async () => {
-            const result = await props.menuRepo.menuSummary([1, 2, 3, 4, 5, 6, 7])
+            const result = await props.menuRepo.menuSummary([...sevenIdList])
+            result.sort(function (a, b) {
+                return (a.scale < b.scale) ? -1 : 1
+            })
             result.sort(function (a, b) {
                 return (a.item < b.item) ? -1 : 1
             })
 
+            let resultGroupByItem: IngredientSummary[]
+            let resultMatrix: Ingredient[][] = []
 
-            let resultGroupByItem: IngredientSummary[] = []
-            let sameItemCount = 1
-            let sameQuantity = 0.00
-            sameQuantity = result[0].quantity
+            let column = 0
+            resultMatrix.push([])
             result.forEach((it, index) => {
+                resultMatrix[column].push({
+                    ingredient_id: it.ingredient_id,
+                    id: it.id,
+                    item: it.item,
+                    quantity: it.quantity,
+                    scale: it.scale,
+                })
                 if (index < result.length - 1) {
-                    if (it.item === result[index + 1].item) {
-                        sameItemCount += 1
-                        sameQuantity = Number((sameQuantity + result[index + 1].quantity).toFixed(2))
-                    } else if (sameItemCount === 1) {
-                        resultGroupByItem.push({
-                            count: sameItemCount,
-                            item: it.item,
-                            quantity: it.quantity,
-                            scale: it.scale,
-                        })
+                    if (it.item === result[index + 1].item && it.scale === result[index + 1].scale) {
                     } else {
-                        resultGroupByItem.push({
-                            count: sameItemCount,
-                            item: it.item,
-                            quantity: sameQuantity,
-                            scale: it.scale,
-                        })
-                        sameItemCount = 1
-                        sameQuantity = result[index + 1].quantity
+                        column += 1
+                        resultMatrix.push([])
                     }
-                } else {
-                    resultGroupByItem.push({
-                        count: sameItemCount,
-                        item: it.item,
-                        quantity: it.quantity,
-                        scale: it.scale,
-                    })
                 }
             })
 
+            resultGroupByItem = resultMatrix.map((itList) => {
+                return itList.reduce((previous, current) => {
+                    return {
+                        count: itList.length,
+                        item: current.item,
+                        quantity: previous.quantity + current.quantity,
+                        scale: current.scale,
+                    }
+                }, {
+                    count: 0,
+                    item: '',
+                    quantity: 0,
+                    scale: '',
+                })
+            })
 
             setIngredient(result)
             setIngredientSummary(resultGroupByItem)
         })()
     }, [props.menuRepo])
 
-    const navigate = useNavigate()
-
-    const sevenDays = [1, 2, 3, 4, 5, 6, 7]
-    const sevenIdList = sevenDays.map(day =>
-        sessionStorage.getItem((day - 1).toString())
-    )
 
     return <>
         お買い物リストの予定（工事中…）

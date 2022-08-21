@@ -70,34 +70,86 @@ describe('menu summary screen', () => {
         expect(within(ingredientElement[1]).getByText('itemNameB,1,scaleOne')).toBeInTheDocument()
     })
 
-    test('display sum quantity at ingredient when is identical with its item', async () => {
+    test('display ingredient list that was sorted by scales name', async () => {
         ingredientResult = [
             {
                 ingredient_id: 9999,
                 id: 9999,
                 item: 'itemName',
+                quantity: 1.0,
+                scale: 'scaleTwo'
+            },
+            {
+                ingredient_id: 9999,
+                id: 9999,
+                item: 'itemName',
+                quantity: 1.0,
+                scale: 'scaleOne'
+            },
+        ]
+
+        spyStubMenuRepo.ingredient_returnValue = Promise.resolve(ingredientResult)
+
+
+        await renderApplication('/menuSummary', appProps)
+
+
+        const ingredientElement = screen.getAllByLabelText('ingredient')
+
+        expect(ingredientElement.length).toEqual(2)
+        expect(within(ingredientElement[0]).getByText('itemName,1,scaleOne')).toBeInTheDocument()
+        expect(within(ingredientElement[1]).getByText('itemName,1,scaleTwo')).toBeInTheDocument()
+    })
+
+    test('display sum quantity at ingredient when is identical with its item', async () => {
+        ingredientResult = [
+            {
+                ingredient_id: 9999,
+                id: 9999,
+                item: 'itemNameOne',
                 quantity: 0.15,
                 scale: 'scale'
             },
             {
                 ingredient_id: 9999,
                 id: 9999,
-                item: 'itemName',
+                item: 'itemNameOne',
                 quantity: 0.25,
                 scale: 'scale'
             },
             {
                 ingredient_id: 9999,
                 id: 9999,
-                item: 'itemName',
+                item: 'itemNameOne',
                 quantity: 0.35,
                 scale: 'scale'
             },
             {
                 ingredient_id: 9999,
                 id: 9999,
-                item: 'itemNameOther',
-                quantity: 0.1,
+                item: 'itemNameTwo',
+                quantity: 0.15,
+                scale: 'scale'
+            },
+            {
+                ingredient_id: 9999,
+                id: 9999,
+                item: 'itemNameTwo',
+                quantity: 1,
+                scale: 'scale'
+            },
+            {
+                ingredient_id: 9999,
+                id: 9999,
+                item: 'itemNameTwo',
+                quantity: 1.5,
+                scale: 'scale'
+            },
+            {
+                ingredient_id: 9999,
+                id: 9999,
+                item: 'itemNameThree',
+                quantity: 1.5,
                 scale: 'scale'
             },
         ]
@@ -110,9 +162,41 @@ describe('menu summary screen', () => {
 
         const ingredientElement = screen.getAllByLabelText('ingredientSummary')
 
+        expect(ingredientElement.length).toEqual(3)
+        expect(within(ingredientElement[0]).getByText('3,itemNameOne,0.75,scale')).toBeInTheDocument()
+        expect(within(ingredientElement[1]).getByText('1,itemNameThree,1.5,scale')).toBeInTheDocument()
+        expect(within(ingredientElement[2]).getByText('3,itemNameTwo,2.65,scale')).toBeInTheDocument()
+    })
+
+    test('condition sum quantity is that ingredient and scale is unique', async () => {
+        ingredientResult = [
+            {
+                ingredient_id: 9999,
+                id: 9999,
+                item: 'itemName',
+                quantity: 0.15,
+                scale: 'scaleOne'
+            },
+            {
+                ingredient_id: 9999,
+                id: 9999,
+                item: 'itemName',
+                quantity: 0.25,
+                scale: 'scaleTwo'
+            },
+        ]
+
+        spyStubMenuRepo.ingredient_returnValue = Promise.resolve(ingredientResult)
+
+
+        await renderApplication('/menuSummary', appProps)
+
+
+        const ingredientElement = screen.getAllByLabelText('ingredientSummary')
+
         expect(ingredientElement.length).toEqual(2)
-        expect(within(ingredientElement[0]).getByText('3,itemName,0.75,scale')).toBeInTheDocument()
-        expect(within(ingredientElement[1]).getByText('1,itemNameOther,0.1,scale')).toBeInTheDocument()
+        expect(within(ingredientElement[0]).getByText('1,itemName,0.15,scaleOne')).toBeInTheDocument()
+        expect(within(ingredientElement[1]).getByText('1,itemName,0.25,scaleTwo')).toBeInTheDocument()
     })
 
 })
