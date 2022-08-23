@@ -10,18 +10,19 @@ export default function MenuSummaryScreen(props: {
     const [ingredientSummary, setIngredientSummary] = useState<IngredientSummary[]>()
     const [ingredientMatrix, setIngredientMatrix] = useState<Ingredient[][]>()
 
-    const sevenDays = [0, 1, 2, 3, 4, 5, 6]
-    const sevenIdList = sevenDays.map(day =>
-        Number(sessionStorage.getItem(String((day))))
-    )
 
     useEffect(() => {
         (async () => {
-
             let result: Ingredient[]
 
-            const sevenIdListIngredient = await Promise.all(sevenIdList.map(async (it) => {
-                    return await props.menuRepo.menuDetail(it)
+            const menuIdList = sessionStorage.getItem('menuIdList')
+
+            const sevenIdList
+                = (menuIdList != null) ? menuIdList.split(',') : []
+
+            const sevenIdListIngredient
+                = await Promise.all(sevenIdList.map(async (it) => {
+                    return await props.menuRepo.menuDetail(Number(it))
                 }
             ))
             result = sevenIdListIngredient.flat()
