@@ -17,7 +17,14 @@ export default function MenuSummaryScreen(props: {
 
     useEffect(() => {
         (async () => {
-            const result = await props.menuRepo.menuSummary([...sevenIdList])
+
+            let result: Ingredient[]
+
+            const sevenIdListIngredient = await Promise.all(sevenIdList.map(async (it) => {
+                    return await props.menuRepo.menuDetail(it)
+                }
+            ))
+            result = sevenIdListIngredient.flat()
             result.sort(function (a, b) {
                 return (a.scale < b.scale) ? -1 : 1
             })
