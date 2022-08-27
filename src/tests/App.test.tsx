@@ -18,6 +18,12 @@ describe('menu app', () => {
 
     describe('header area', () => {
         test('display menu app name(menu planner)', async () => {
+            (global as any).IntersectionObserver
+                = jest.fn().mockImplementation(() => ({
+                observe: () => jest.fn(),
+            }))
+
+
             await renderApplication('/', appProps)
 
 

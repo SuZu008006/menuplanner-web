@@ -13,6 +13,12 @@ describe('home screen', () => {
     })
 
     test('display start button', async () => {
+        (global as any).IntersectionObserver
+            = jest.fn().mockImplementation(() => ({
+            observe: () => jest.fn(),
+        }))
+
+
         await renderApplication('/', appProps)
 
 
