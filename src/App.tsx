@@ -3,6 +3,7 @@ import {Route, Routes} from 'react-router-dom'
 import MenuListScreen from './MenuListScreen'
 import MenuDetailScreen from './MenuDetailScreen'
 import MenuSummaryScreen from './MenuSummaryScreen'
+import HomeScreen from './HomeScreen'
 import MenuRepo from './NetworkMenuRepo'
 import styles from './styles/App.module.scss'
 
@@ -22,7 +23,7 @@ export default function App(props: AppProps) {
             <div className="App">
             </div>
             <Routes>
-                <Route path="/" element={<></>}/>
+                <Route path="/" element={<HomeScreen></HomeScreen>}/>
                 <Route path="/menuList" element={<MenuListScreen menuRepo={menuRepo}/>}/>
                 <Route path="/menuDetail/:menuCode" element={<MenuDetailScreen menuRepo={menuRepo}/>}/>
                 <Route path="/menuSummary" element={<MenuSummaryScreen menuRepo={menuRepo}/>}/>

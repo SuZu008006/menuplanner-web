@@ -9,6 +9,7 @@ export default function MenuSummaryScreen(props: {
 }) {
     const [ingredientSummary, setIngredientSummary] = useState<IngredientSummary[]>()
     const [ingredientMatrix, setIngredientMatrix] = useState<Ingredient[][]>()
+    const [isLoaded, setIsLoaded] = useState<boolean>(false)
 
 
     useEffect(() => {
@@ -73,6 +74,7 @@ export default function MenuSummaryScreen(props: {
 
             setIngredientSummary(resultGroupByItem)
             setIngredientMatrix(resultMatrix)
+            setIsLoaded(true)
         })()
     }, [props.menuRepo])
 
@@ -80,20 +82,24 @@ export default function MenuSummaryScreen(props: {
     return (
         <>
             お買い物リストの予定（工事中…）
-            {ingredientSummary?.map((ingredient, summaryIndex) => {
-                return <details key={'details' + summaryIndex}>
-                    <summary aria-label="ingredientSummary" key={'summary' + summaryIndex}>
-                        {ingredient.item},
-                        {ingredient.quantity},
-                        {ingredient.scale}
-                    </summary>
-                    {ingredientMatrix![summaryIndex].map((ingredient, index) =>
-                        <div aria-label="ingredient" key={'summary' + summaryIndex + 'ingredient' + index}>
-                            {ingredient.quantity},
-                        </div>
-                    )}
-                </details>
-            })}
+            <div>
+                {isLoaded && (
+                    ingredientSummary!.map((ingredient, summaryIndex) => {
+                        return <details key={'details' + summaryIndex}>
+                            <summary aria-label="ingredientSummary" key={'summary' + summaryIndex}>
+                                {ingredient.item},
+                                {ingredient.quantity},
+                                {ingredient.scale}
+                            </summary>
+                            {ingredientMatrix![summaryIndex].map((ingredient, index) =>
+                                <div aria-label="ingredient" key={'summary' + summaryIndex + 'ingredient' + index}>
+                                    {ingredient.quantity},
+                                </div>
+                            )}
+                        </details>
+                    })
+                )}
+            </div>
         </>
     )
 }
