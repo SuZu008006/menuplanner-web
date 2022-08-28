@@ -1,15 +1,14 @@
 import {useRive} from 'rive-react'
 import styles from './styles/HomeScreen.module.scss'
 
-export function CatPointerMove() {
+export function RiveMonsterGame() {
     const {rive, RiveComponent} = useRive({
-        src: 'Cat.riv',
-        animations: 'State Machine',
-        artboard: 'Cat Artboard',
+        src: 'MonsterGame.riv',
+        animations: 'Motion',
         autoplay: true,
     })
     if (rive) {
-        // console.log(rive.contents.artboards)
+        // console.log(rive.contents)
     }
 
     return <>
