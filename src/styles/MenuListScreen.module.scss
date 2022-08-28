@@ -14,6 +14,10 @@
     border: 2px solid $shades9;
     cursor: pointer;
   }
+
+  &:active {
+    transform: scale(.95);
+  }
 }
 
 .menuHeader {
@@ -87,5 +91,9 @@
   &:hover {
     border: 2px solid $shades9;
     cursor: pointer;
+  }
+
+  &:active {
+    transform: scale(.95);
   }
 }
