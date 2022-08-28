@@ -4,6 +4,7 @@ import {RiveHamburger} from './RiveHamburger'
 import {RiveMonsterGame} from './RiveMonsterGame'
 import {RiveHand} from './RiveHand'
 import {HeroBot} from './HeroBot'
+import {RivKikiki} from './RivKikiki'
 
 export default function HomeScreen() {
 
@@ -15,6 +16,7 @@ export default function HomeScreen() {
                 <RiveHamburger></RiveHamburger>
                 <RiveMonsterGame></RiveMonsterGame>
                 <HeroBot></HeroBot>
+                <RivKikiki></RivKikiki>
             </div>
             <button className={styles.menuStart}>
                 いただきますの準備をする
