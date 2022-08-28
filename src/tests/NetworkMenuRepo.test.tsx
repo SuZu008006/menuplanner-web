@@ -15,6 +15,7 @@ describe('Network menu repository', () => {
                 {
                     'id': '1',
                     'title': 'titleOne',
+                    'image': 'imageOne',
                 },
             ])
 
@@ -25,6 +26,7 @@ describe('Network menu repository', () => {
             expect(returnedMenu).toEqual([{
                 'id': '1',
                 'title': 'titleOne',
+                'image': 'imageOne',
             }])
         })
     })

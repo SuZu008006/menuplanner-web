@@ -13,13 +13,13 @@ describe('menu list screen', () => {
     let appProps: AppProps
 
     const menuResult: Menu[] = [
-        {id: '1', title: 'title1'},
-        {id: '2', title: 'title2'},
-        {id: '3', title: 'title3'},
-        {id: '4', title: 'title4'},
-        {id: '5', title: 'title5'},
-        {id: '6', title: 'title6'},
-        {id: '7', title: 'title7'},
+        {id: '1', title: 'titleOne', image: 'imageOne'},
+        {id: '2', title: 'titleTwo', image: 'imageTwo'},
+        {id: '3', title: 'titleThree', image: 'imageThree'},
+        {id: '4', title: 'titleFour', image: 'imageFour'},
+        {id: '5', title: 'titleFive', image: 'imageFive'},
+        {id: '6', title: 'titleSix', image: 'imageSix'},
+        {id: '7', title: 'titleSeven', image: 'imageSeven'},
     ]
     const ingredientResult: Ingredient[] = [
         {
@@ -46,26 +46,33 @@ describe('menu list screen', () => {
 
 
         expect(screen.getByText('月')).toBeInTheDocument()
-        expect(screen.getByText('title1')).toBeInTheDocument()
+        expect(screen.getByText('titleOne')).toBeInTheDocument()
+        expect(screen.getByAltText('imageOne')).toBeInTheDocument()
         expect(screen.getByText('火')).toBeInTheDocument()
-        expect(screen.getByText('title2')).toBeInTheDocument()
+        expect(screen.getByText('titleTwo')).toBeInTheDocument()
+        expect(screen.getByAltText('imageTwo')).toBeInTheDocument()
         expect(screen.getByText('水')).toBeInTheDocument()
-        expect(screen.getByText('title3')).toBeInTheDocument()
+        expect(screen.getByText('titleThree')).toBeInTheDocument()
+        expect(screen.getByAltText('imageThree')).toBeInTheDocument()
         expect(screen.getByText('木')).toBeInTheDocument()
-        expect(screen.getByText('title4')).toBeInTheDocument()
+        expect(screen.getByText('titleFour')).toBeInTheDocument()
+        expect(screen.getByAltText('imageFour')).toBeInTheDocument()
         expect(screen.getByText('金')).toBeInTheDocument()
-        expect(screen.getByText('title5')).toBeInTheDocument()
+        expect(screen.getByText('titleFive')).toBeInTheDocument()
+        expect(screen.getByAltText('imageFive')).toBeInTheDocument()
         expect(screen.getByText('土')).toBeInTheDocument()
-        expect(screen.getByText('title6')).toBeInTheDocument()
+        expect(screen.getByText('titleSix')).toBeInTheDocument()
+        expect(screen.getByAltText('imageSix')).toBeInTheDocument()
         expect(screen.getByText('日')).toBeInTheDocument()
-        expect(screen.getByText('title7')).toBeInTheDocument()
+        expect(screen.getByText('titleSeven')).toBeInTheDocument()
+        expect(screen.getByAltText('imageSeven')).toBeInTheDocument()
     })
 
     test('display the menu detail when click menu list of target menu', async () => {
         spyStubMenuRepo.menu_returnValue = Promise.resolve(menuResult)
 
         await renderApplication('/menuList', appProps)
-        const menuElement = screen.getByText('title1')
+        const menuElement = screen.getByText('titleOne')
 
 
         await userEvent.click(menuElement)

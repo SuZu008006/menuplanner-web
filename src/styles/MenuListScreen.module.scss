@@ -2,13 +2,13 @@
 
 .menuRow {
   width: auto;
-  height: 50px;
+  height: 88px;
   padding-left: 10px;
   margin-top: 10px;
-  display: flex;
   border-radius: 5px;
   background-color: $tints9;
   border: 2px solid $tints9;
+  display: flex;
 
   &:hover {
     border: 2px solid $shades9;
@@ -16,8 +16,46 @@
   }
 }
 
+.menuHeader {
+  display: flex;
+}
+
+.menuContent {
+
+}
+
+.imageContainer {
+  position: relative;
+}
+
+.imageShade {
+  height: 54px;
+  width: 81px;
+  background-color: $shades9;
+}
+
+.menuImage {
+  position: absolute;
+  height: 50px;
+  padding-left: 3px;
+  padding-top: 2px;
+  border-radius: 0 100% 0 100% / 80% 20% 80% 20%;
+}
+
+.menuImagePin {
+  position: absolute;
+  margin-left: 75px;
+  margin-top: 3px;
+  height: 2px;
+  width: 3px;
+  background-color: $shades0;
+  border-radius: 1px;
+}
+
 .dayOfWeek {
+  font-weight: bold;
   width: 40px;
+  height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,6 +66,7 @@
 }
 
 .menuTitle {
+  margin-top: 4px;
   display: flex;
   justify-content: center;
   align-items: center;
