@@ -4,7 +4,7 @@ import {AppProps} from '../App'
 import {AppPropsBuilder} from '../AppPropsBuilder'
 import {screen} from '@testing-library/react'
 import {SpyStubMenuRepo} from './SpyStubMenuRepo'
-import Ingredient from '../Ingredient'
+import MenuStruct from '../MenuStruct'
 
 describe('menu detail screen', () => {
     let spyStubMenuRepo: SpyStubMenuRepo
@@ -17,30 +17,41 @@ describe('menu detail screen', () => {
             .build()
     })
 
-    test('display ingredient of target menu', async () => {
-        const ingredientResult: Ingredient[] = [
-            {
-                ingredient_id: 1,
+    test('display ingredient and seasoning of target menu', async () => {
+        const menuStructResult: MenuStruct = {
+            menuRecord: {
                 id: 1,
-                item: 'itemNameOne',
-                quantity: 10.0,
-                scale: '個'
+                title: 'titleOne',
+                image: 'imageOne',
             },
-            {
-                ingredient_id: 2,
-                id: 1,
-                item: 'itemNameTwo',
-                quantity: 20.5,
-                scale: '株'
-            },
-        ]
-        spyStubMenuRepo.ingredient_returnValue = Promise.resolve(ingredientResult)
+            ingredientRecord: [
+                {
+                    ingredient_id: 1,
+                    id: 1,
+                    item: 'itemNameOne',
+                    quantity: 1.1,
+                    scale: 'scaleOne',
+                },
+            ],
+            seasoningRecord: [
+                {
+                    seasoning_id: 1,
+                    id: 1,
+                    item: 'itemNameTwo',
+                    quantity: 2.2,
+                    scale: 'scaleTwo',
+                },
+            ]
+        }
+
+
+        spyStubMenuRepo.menu_struct_returnValue = Promise.resolve(menuStructResult)
 
 
         await renderApplication('menuDetail/1', appProps)
 
 
-        expect(screen.getByText('itemNameOne,10,個')).toBeInTheDocument()
-        expect(screen.getByText('itemNameTwo,20.5,株')).toBeInTheDocument()
+        expect(screen.getByText('itemNameOne,1.1,scaleOne')).toBeInTheDocument()
+        expect(screen.getByText('itemNameTwo,2.2,scaleTwo')).toBeInTheDocument()
     })
 })

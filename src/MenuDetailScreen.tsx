@@ -1,29 +1,36 @@
 import MenuRepo from './NetworkMenuRepo'
 import {useEffect, useState} from 'react'
-import Ingredient from './Ingredient'
 import {useParams} from 'react-router-dom'
+import MenuStruct from './MenuStruct'
 
 export default function MenuDetailScreen(props: {
     menuRepo: MenuRepo
 }) {
-    const [ingredient, setIngredient] = useState<Ingredient[]>()
+    const [menuStruct, setMenuStruct] = useState<MenuStruct>()
 
     const menuCode = useParams().menuCode ?? ''
 
     useEffect(() => {
         (async () => {
             const result = await props.menuRepo.menuDetail(Number(menuCode))
-            setIngredient(result)
+            setMenuStruct(result)
         })()
     }, [props.menuRepo, menuCode])
 
     return (
         <>
-            {ingredient?.map((ingredient, index) =>
+            {menuStruct?.ingredientRecord.map((ingredient, index) =>
                 <div key={index}>
                     {ingredient.item},
                     {ingredient.quantity},
                     {ingredient.scale}
+                </div>
+            )}
+            {menuStruct?.seasoningRecord.map((seasoning, index) =>
+                <div key={index}>
+                    {seasoning.item},
+                    {seasoning.quantity},
+                    {seasoning.scale}
                 </div>
             )}
         </>

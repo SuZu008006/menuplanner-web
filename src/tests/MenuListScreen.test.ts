@@ -1,25 +1,25 @@
 import '@testing-library/jest-dom'
 import renderApplication from './RenderApplication'
-import Menu from '../Menu'
 import {AppProps} from '../App'
 import {AppPropsBuilder} from '../AppPropsBuilder'
 import {screen, within} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import {SpyStubMenuRepo} from './SpyStubMenuRepo'
 import Ingredient from '../Ingredient'
+import Menu from '../Menu'
 
 describe('menu list screen', () => {
     let spyStubMenuRepo: SpyStubMenuRepo
     let appProps: AppProps
 
     const menuResult: Menu[] = [
-        {id: '1', title: 'titleOne', image: 'imageOne'},
-        {id: '2', title: 'titleTwo', image: 'imageTwo'},
-        {id: '3', title: 'titleThree', image: 'imageThree'},
-        {id: '4', title: 'titleFour', image: 'imageFour'},
-        {id: '5', title: 'titleFive', image: 'imageFive'},
-        {id: '6', title: 'titleSix', image: 'imageSix'},
-        {id: '7', title: 'titleSeven', image: 'imageSeven'},
+        {id: 1, title: 'titleOne', image: 'imageOne'},
+        {id: 2, title: 'titleTwo', image: 'imageTwo'},
+        {id: 3, title: 'titleThree', image: 'imageThree'},
+        {id: 4, title: 'titleFour', image: 'imageFour'},
+        {id: 5, title: 'titleFive', image: 'imageFive'},
+        {id: 6, title: 'titleSix', image: 'imageSix'},
+        {id: 7, title: 'titleSeven', image: 'imageSeven'},
     ]
     const ingredientResult: Ingredient[] = [
         {

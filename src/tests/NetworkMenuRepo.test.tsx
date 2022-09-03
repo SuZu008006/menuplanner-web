@@ -31,34 +31,66 @@ describe('Network menu repository', () => {
         })
     })
 
-    describe('menuDetail(ingredient)', () => {
+    describe('menuDetail(menuStruct)', () => {
         test('return JSON by parse as array', async () => {
             spyStubNetworkHttp = new SpyStubHttp()
             networkMenuRepo = new NetworkMenuRepo(spyStubNetworkHttp)
 
-            spyStubNetworkHttp.get_returnValue = Promise.resolve([
-                {
-                    'ingredient_id': 1,
-                    'id': 1,
-                    'item': 'itemNameOne',
-                    'quantity': '1',
-                    'scale': 'g',
+            spyStubNetworkHttp.get_returnValue = Promise.resolve({
+                menuRecord: {
+                    'id': '1',
+                    'title': 'titleOne',
+                    'image': 'imageOne',
                 },
-            ])
+                ingredientRecord: [
+                    {
+                        'ingredient_id': 1,
+                        'id': 1,
+                        'item': 'itemNameOne',
+                        'quantity': '1.1',
+                        'scale': 'scaleOne',
+                    },
+                ],
+                seasoningRecord: [
+                    {
+                        'seasoning_id': 1,
+                        'id': 1,
+                        'item': 'itemNameTwo',
+                        'quantity': '2.2',
+                        'scale': 'scaleTwo',
+                    },
+                ]
+            })
 
 
             const returnedMenu = await networkMenuRepo.menuDetail(1)
 
 
-            expect(returnedMenu).toEqual([
-                {
-                    'ingredient_id': 1,
-                    'id': 1,
-                    'item': 'itemNameOne',
-                    'quantity': '1',
-                    'scale': 'g',
+            expect(returnedMenu).toEqual({
+                menuRecord: {
+                    'id': '1',
+                    'title': 'titleOne',
+                    'image': 'imageOne',
                 },
-            ])
+                ingredientRecord: [
+                    {
+                        'ingredient_id': 1,
+                        'id': 1,
+                        'item': 'itemNameOne',
+                        'quantity': '1.1',
+                        'scale': 'scaleOne',
+                    },
+                ],
+                seasoningRecord: [
+                    {
+                        'seasoning_id': 1,
+                        'id': 1,
+                        'item': 'itemNameTwo',
+                        'quantity': '2.2',
+                        'scale': 'scaleTwo',
+                    },
+                ]
+            })
         })
     })
 

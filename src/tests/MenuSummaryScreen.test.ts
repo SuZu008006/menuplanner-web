@@ -4,13 +4,13 @@ import {AppProps} from '../App'
 import {AppPropsBuilder} from '../AppPropsBuilder'
 import {screen, within} from '@testing-library/react'
 import {SpyStubMenuRepo} from './SpyStubMenuRepo'
-import Ingredient from '../Ingredient'
+import MenuStruct from '../MenuStruct'
 
 describe('menu summary screen', () => {
     let spyStubMenuRepo: SpyStubMenuRepo
     let appProps: AppProps
 
-    let ingredientResult: Ingredient[]
+    let menuStructResult: MenuStruct
 
     beforeEach(() => {
         spyStubMenuRepo = new SpyStubMenuRepo()
@@ -26,17 +26,25 @@ describe('menu summary screen', () => {
     test('called menuRepo.menuDetail for the number of menuIdList size', async () => {
         const menuIdListValue = [9999, 9999, 9999].toString()
         sessionStorage.setItem('menuIdList', menuIdListValue)
-        ingredientResult = [
-            {
-                ingredient_id: 9999,
+        menuStructResult = {
+            menuRecord: {
                 id: 9999,
-                item: 'itemNameOne',
-                quantity: 10.0,
-                scale: 'scale'
+                title: '',
+                image: '',
             },
-        ]
+            ingredientRecord: [
+                {
+                    ingredient_id: 9999,
+                    id: 9999,
+                    item: 'itemNameOne',
+                    quantity: 10.0,
+                    scale: 'scale'
+                },
+            ],
+            seasoningRecord: []
+        }
 
-        spyStubMenuRepo.ingredient_returnValue = Promise.resolve(ingredientResult)
+        spyStubMenuRepo.menu_struct_returnValue = Promise.resolve(menuStructResult)
 
 
         await renderApplication('/menuSummary', appProps)
@@ -50,17 +58,25 @@ describe('menu summary screen', () => {
     test('display the ingredient list along menuIdList of sessionStorage value', async () => {
         const menuIdListValue = [9999].toString()
         sessionStorage.setItem('menuIdList', menuIdListValue)
-        ingredientResult = [
-            {
-                ingredient_id: 9999,
+        menuStructResult = {
+            menuRecord: {
                 id: 9999,
-                item: 'itemNameOne',
-                quantity: 10.0,
-                scale: 'scale'
+                title: '',
+                image: '',
             },
-        ]
+            ingredientRecord: [
+                {
+                    ingredient_id: 9999,
+                    id: 9999,
+                    item: 'itemNameOne',
+                    quantity: 10.0,
+                    scale: 'scale'
+                },
+            ],
+            seasoningRecord: []
+        }
 
-        spyStubMenuRepo.ingredient_returnValue = Promise.resolve(ingredientResult)
+        spyStubMenuRepo.menu_struct_returnValue = Promise.resolve(menuStructResult)
 
 
         await renderApplication('/menuSummary', appProps)
@@ -72,24 +88,32 @@ describe('menu summary screen', () => {
     test('display ingredient list that was sorted by items name', async () => {
         const menuIdListValue = [9999].toString()
         sessionStorage.setItem('menuIdList', menuIdListValue)
-        ingredientResult = [
-            {
-                ingredient_id: 9999,
+        menuStructResult = {
+            menuRecord: {
                 id: 9999,
-                item: 'itemNameB',
-                quantity: 1.0,
-                scale: 'scaleOne'
+                title: '',
+                image: '',
             },
-            {
-                ingredient_id: 9999,
-                id: 9999,
-                item: 'itemNameA',
-                quantity: 2.0,
-                scale: 'scaleTwo'
-            },
-        ]
+            ingredientRecord: [
+                {
+                    ingredient_id: 9999,
+                    id: 9999,
+                    item: 'itemNameB',
+                    quantity: 1.0,
+                    scale: 'scaleOne'
+                },
+                {
+                    ingredient_id: 9999,
+                    id: 9999,
+                    item: 'itemNameA',
+                    quantity: 2.0,
+                    scale: 'scaleTwo'
+                },
+            ],
+            seasoningRecord: []
+        }
 
-        spyStubMenuRepo.ingredient_returnValue = Promise.resolve(ingredientResult)
+        spyStubMenuRepo.menu_struct_returnValue = Promise.resolve(menuStructResult)
 
 
         await renderApplication('/menuSummary', appProps)
@@ -105,24 +129,32 @@ describe('menu summary screen', () => {
     test('display ingredient list that was sorted by scales name', async () => {
         const menuIdListValue = [9999].toString()
         sessionStorage.setItem('menuIdList', menuIdListValue)
-        ingredientResult = [
-            {
-                ingredient_id: 9999,
+        menuStructResult = {
+            menuRecord: {
                 id: 9999,
-                item: 'itemName',
-                quantity: 2.0,
-                scale: 'scaleTwo'
+                title: '',
+                image: '',
             },
-            {
-                ingredient_id: 9999,
-                id: 9999,
-                item: 'itemName',
-                quantity: 1.0,
-                scale: 'scaleOne'
-            },
-        ]
+            ingredientRecord: [
+                {
+                    ingredient_id: 9999,
+                    id: 9999,
+                    item: 'itemName',
+                    quantity: 2.0,
+                    scale: 'scaleTwo'
+                },
+                {
+                    ingredient_id: 9999,
+                    id: 9999,
+                    item: 'itemName',
+                    quantity: 1.0,
+                    scale: 'scaleOne'
+                },
+            ],
+            seasoningRecord: []
+        }
 
-        spyStubMenuRepo.ingredient_returnValue = Promise.resolve(ingredientResult)
+        spyStubMenuRepo.menu_struct_returnValue = Promise.resolve(menuStructResult)
 
 
         await renderApplication('/menuSummary', appProps)
@@ -138,38 +170,46 @@ describe('menu summary screen', () => {
     test('display sum quantity at ingredient when is identical with its item', async () => {
         const menuIdListValue = [9999].toString()
         sessionStorage.setItem('menuIdList', menuIdListValue)
-        ingredientResult = [
-            {
-                ingredient_id: 9999,
+        menuStructResult = {
+            menuRecord: {
                 id: 9999,
-                item: 'itemNameOne',
-                quantity: 0.15,
-                scale: 'scale'
+                title: '',
+                image: '',
             },
-            {
-                ingredient_id: 9999,
-                id: 9999,
-                item: 'itemNameOne',
-                quantity: 0.25,
-                scale: 'scale'
-            },
-            {
-                ingredient_id: 9999,
-                id: 9999,
-                item: 'itemNameOne',
-                quantity: 0.35,
-                scale: 'scale'
-            },
-            {
-                ingredient_id: 9999,
-                id: 9999,
-                item: 'itemNameTwo',
-                quantity: 0.15,
-                scale: 'scale'
-            },
-        ]
+            ingredientRecord: [
+                {
+                    ingredient_id: 9999,
+                    id: 9999,
+                    item: 'itemNameOne',
+                    quantity: 0.15,
+                    scale: 'scale'
+                },
+                {
+                    ingredient_id: 9999,
+                    id: 9999,
+                    item: 'itemNameOne',
+                    quantity: 0.25,
+                    scale: 'scale'
+                },
+                {
+                    ingredient_id: 9999,
+                    id: 9999,
+                    item: 'itemNameOne',
+                    quantity: 0.35,
+                    scale: 'scale'
+                },
+                {
+                    ingredient_id: 9999,
+                    id: 9999,
+                    item: 'itemNameTwo',
+                    quantity: 0.15,
+                    scale: 'scale'
+                },
+            ],
+            seasoningRecord: []
+        }
 
-        spyStubMenuRepo.ingredient_returnValue = Promise.resolve(ingredientResult)
+        spyStubMenuRepo.menu_struct_returnValue = Promise.resolve(menuStructResult)
 
 
         await renderApplication('/menuSummary', appProps)
@@ -185,24 +225,32 @@ describe('menu summary screen', () => {
     test('condition sum quantity is that ingredient and scale is unique', async () => {
         const menuIdListValue = [9999].toString()
         sessionStorage.setItem('menuIdList', menuIdListValue)
-        ingredientResult = [
-            {
-                ingredient_id: 9999,
+        menuStructResult = {
+            menuRecord: {
                 id: 9999,
-                item: 'itemName',
-                quantity: 0.15,
-                scale: 'scaleOne'
+                title: '',
+                image: '',
             },
-            {
-                ingredient_id: 9999,
-                id: 9999,
-                item: 'itemName',
-                quantity: 0.25,
-                scale: 'scaleTwo'
-            },
-        ]
+            ingredientRecord: [
+                {
+                    ingredient_id: 9999,
+                    id: 9999,
+                    item: 'itemName',
+                    quantity: 0.15,
+                    scale: 'scaleOne'
+                },
+                {
+                    ingredient_id: 9999,
+                    id: 9999,
+                    item: 'itemName',
+                    quantity: 0.25,
+                    scale: 'scaleTwo'
+                },
+            ],
+            seasoningRecord: []
+        }
 
-        spyStubMenuRepo.ingredient_returnValue = Promise.resolve(ingredientResult)
+        spyStubMenuRepo.menu_struct_returnValue = Promise.resolve(menuStructResult)
 
 
         await renderApplication('/menuSummary', appProps)

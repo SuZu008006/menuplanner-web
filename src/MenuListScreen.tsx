@@ -1,8 +1,8 @@
 import {useEffect, useState} from 'react'
-import Menu from './Menu'
 import {useNavigate} from 'react-router-dom'
 import MenuRepo from './NetworkMenuRepo'
 import styles from './styles/MenuListScreen.module.scss'
+import Menu from './Menu'
 
 export default function MenuListScreen(props: {
     menuRepo: MenuRepo

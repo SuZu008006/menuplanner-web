@@ -1,5 +1,5 @@
 export default interface Menu {
-    id: string
+    id: number
     title: string
     image: string
 }

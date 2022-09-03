@@ -1,11 +1,12 @@
 import {Http} from './NetworkHttp'
-import Menu from './Menu'
 import Ingredient from './Ingredient'
+import Menu from './Menu'
+import MenuStruct from './MenuStruct'
 
 export default interface MenuRepo {
     menuList(): Promise<Menu[]>
 
-    menuDetail(id: number): Promise<Ingredient[]>
+    menuDetail(id: number): Promise<MenuStruct>
 
     menuSummary(idList: number[]): Promise<Ingredient[]>
 }
@@ -21,8 +22,8 @@ export class NetworkMenuRepo implements MenuRepo {
         return await this.http.get('/api/menu') as Menu[]
     }
 
-    async menuDetail(id: number): Promise<Ingredient[]> {
-        return await this.http.get(`/api/menu/${id}`) as Ingredient[]
+    async menuDetail(id: number): Promise<MenuStruct> {
+        return await this.http.get(`/api/menu/${id}`) as MenuStruct
     }
 
     async menuSummary(idList: number[]): Promise<Ingredient[]> {
