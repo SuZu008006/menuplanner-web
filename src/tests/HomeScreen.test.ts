@@ -24,4 +24,16 @@ describe('home screen', () => {
 
         expect(screen.getByText('いただきますの準備をする')).toBeInTheDocument()
     })
+
+    test('display riv animation', async () => {
+        (global as any).IntersectionObserver
+            = jest.fn().mockImplementation(() => ({
+            observe: () => jest.fn(),
+        }))
+
+
+        await renderApplication('/', appProps)
+
+        expect(screen.getByRole('riv')).toBeInTheDocument()
+    })
 })
