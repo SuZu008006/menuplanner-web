@@ -1,7 +1,7 @@
 import MenuRepo from './NetworkMenuRepo'
 import {useEffect, useState} from 'react'
 import {useParams} from 'react-router-dom'
-import MenuStruct from './MenuStruct'
+import MenuStruct from './types/MenuStruct'
 import styles from './styles/MenuDetailScreen.module.scss'
 
 

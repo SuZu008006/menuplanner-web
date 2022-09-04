@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react'
 import MenuRepo from './NetworkMenuRepo'
-import Ingredient from './Ingredient'
+import Ingredient from './types/Ingredient'
 import IngredientSummary from './IngredientSummary'
 
 

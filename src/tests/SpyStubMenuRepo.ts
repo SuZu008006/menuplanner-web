@@ -1,7 +1,7 @@
 import MenuRepo from '../NetworkMenuRepo'
-import Ingredient from '../Ingredient'
-import Menu from '../Menu'
-import MenuStruct from '../MenuStruct'
+import Ingredient from '../types/Ingredient'
+import Menu from '../types/Menu'
+import MenuStruct from '../types/MenuStruct'
 
 export class SpyStubMenuRepo implements MenuRepo {
     menuResult: Menu[] = []

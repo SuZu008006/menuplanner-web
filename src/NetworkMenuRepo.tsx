@@ -1,7 +1,7 @@
 import {Http} from './NetworkHttp'
-import Ingredient from './Ingredient'
-import Menu from './Menu'
-import MenuStruct from './MenuStruct'
+import Ingredient from './types/Ingredient'
+import Menu from './types/Menu'
+import MenuStruct from './types/MenuStruct'
 
 export default interface MenuRepo {
     menuList(): Promise<Menu[]>

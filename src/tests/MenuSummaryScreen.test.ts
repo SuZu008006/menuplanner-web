@@ -4,7 +4,7 @@ import {AppProps} from '../App'
 import {AppPropsBuilder} from '../AppPropsBuilder'
 import {screen, within} from '@testing-library/react'
 import {SpyStubMenuRepo} from './SpyStubMenuRepo'
-import MenuStruct from '../MenuStruct'
+import MenuStruct from '../types/MenuStruct'
 
 describe('menu summary screen', () => {
     let spyStubMenuRepo: SpyStubMenuRepo

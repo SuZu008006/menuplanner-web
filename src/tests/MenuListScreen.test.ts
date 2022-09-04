@@ -5,8 +5,8 @@ import {AppPropsBuilder} from '../AppPropsBuilder'
 import {screen, within} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import {SpyStubMenuRepo} from './SpyStubMenuRepo'
-import Ingredient from '../Ingredient'
-import Menu from '../Menu'
+import Ingredient from '../types/Ingredient'
+import Menu from '../types/Menu'
 
 describe('menu list screen', () => {
     let spyStubMenuRepo: SpyStubMenuRepo
