@@ -20,37 +20,49 @@ export default function MenuDetailScreen(props: {
     }, [props.menuRepo, menuCode])
 
     return (
-        <>
-            <table className={styles.table}>
-                <tbody>
-                <tr className={styles.categoryContainer}>
-                    <td className={styles.category}>材料</td>
-                    <td className={styles.categoryContent}>
+        <table className={styles.table}>
+            <tbody>
+            <tr className={styles.categoryContainer}>
+                <td className={styles.category}>材料</td>
+                <td className={styles.categoryContent}>
+                    <table className={styles.subTable}>
+                        <tbody>
                         {menuStruct?.ingredientRecord
                             .map((ingredient, index) =>
-                                <div key={index}>
-                                    {ingredient.item},
-                                    {ingredient.quantity},
-                                    {ingredient.scale}
-                                </div>
+                                <tr
+                                    className={styles.subCategoryContainer}
+                                    key={index}
+                                >
+                                    <td className={styles.tdItem}>{ingredient.item}</td>
+                                    <td className={styles.tdQuantity}>{ingredient.quantity}</td>
+                                    <td className={styles.tdScale}>{ingredient.scale}</td>
+                                </tr>
                             )}
-                    </td>
-                </tr>
-                <tr className={styles.categoryContainer}>
-                    <td className={styles.category}>調味料</td>
-                    <td className={styles.categoryContent}>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <tr className={styles.categoryContainer}>
+                <td className={styles.category}>調味料</td>
+                <td className={styles.categoryContent}>
+                    <table className={styles.subTable}>
+                        <tbody>
                         {menuStruct?.seasoningRecord
                             .map((seasoning, index) =>
-                                <div key={index}>
-                                    {seasoning.item},
-                                    {seasoning.quantity},
-                                    {seasoning.scale}
-                                </div>
+                                <tr
+                                    className={styles.subCategoryContainer}
+                                    key={index}
+                                >
+                                    <td className={styles.tdItem}>{seasoning.item}</td>
+                                    <td className={styles.tdQuantity}>{seasoning.quantity}</td>
+                                    <td className={styles.tdScale}>{seasoning.scale}</td>
+                                </tr>
                             )}
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     )
 }

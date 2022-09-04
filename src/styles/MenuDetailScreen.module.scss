@@ -9,6 +9,20 @@
   margin-top: 20px;
   background-color: $tints9;
   border-radius: 5px;
+  color: $shades9;
+}
+
+.subTable {
+  width: 100%;
+}
+
+.subCategoryContainer {
+  display: flex;
+  margin-top: 20px;
+  background-color: $tints9;
+  border-radius: 5px;
+  color: $shades9;
+  align-items: flex-end;
 }
 
 .category {
@@ -17,6 +31,7 @@
 
   font-weight: bold;
   width: 20%;
+  max-width: 80px;
   height: 40px;
   display: flex;
   justify-content: center;
@@ -29,4 +44,17 @@
 
 .categoryContent {
   width: 100%;
+}
+
+.tdItem {
+  width: 100%;
+  margin-right: 10px;
+}
+
+.tdQuantity {
+  width: 60px;
+}
+
+.tdScale {
+  width: 60px;
 }

@@ -50,11 +50,16 @@ describe('menu detail screen', () => {
         await renderApplication('menuDetail/1', appProps)
 
 
-        const categoryElement = screen.getAllByRole('row') as HTMLElement[]
+        const categoryElement = screen.getAllByRole('table')[0] as HTMLElement
+        const categoryTrElement = within(categoryElement).getAllByRole('row')
 
-        expect(within(categoryElement[0]).getByText('材料')).toBeInTheDocument()
-        expect(within(categoryElement[0]).getByText('itemNameOne,1.1,scaleOne')).toBeInTheDocument()
-        expect(within(categoryElement[1]).getByText('調味料')).toBeInTheDocument()
-        expect(within(categoryElement[1]).getByText('itemNameTwo,2.2,scaleTwo')).toBeInTheDocument()
+        expect(within(categoryTrElement[0]).getByText('材料')).toBeInTheDocument()
+        expect(within(categoryTrElement[0]).getByText('itemNameOne')).toBeInTheDocument()
+        expect(within(categoryTrElement[0]).getByText('1.1')).toBeInTheDocument()
+        expect(within(categoryTrElement[0]).getByText('scaleOne')).toBeInTheDocument()
+        expect(within(categoryTrElement[2]).getByText('調味料')).toBeInTheDocument()
+        expect(within(categoryTrElement[2]).getByText('itemNameTwo')).toBeInTheDocument()
+        expect(within(categoryTrElement[2]).getByText('2.2')).toBeInTheDocument()
+        expect(within(categoryTrElement[2]).getByText('scaleTwo')).toBeInTheDocument()
     })
 })
