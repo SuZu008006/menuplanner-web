@@ -52,6 +52,7 @@ export default function MenuListScreen(props: {
                                         className={styles.menuImage}
                                         src={menu?.[index].image}
                                         alt={menu?.[index].image}
+                                        loading={'lazy'}
                                     />
                                     <div className={styles.menuImagePin}/>
                                 </div>

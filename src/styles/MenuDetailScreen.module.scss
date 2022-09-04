@@ -1,0 +1,32 @@
+@import './ColorStyle.module';
+
+.table {
+  width: 100%;
+}
+
+.categoryContainer {
+  display: flex;
+  margin-top: 20px;
+  background-color: $tints9;
+  border-radius: 5px;
+}
+
+.category {
+  position: sticky;
+  top: 40px;
+
+  font-weight: bold;
+  width: 20%;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10px 0 0;
+  background-color: $shades9;
+  color: $shades0;
+  border-radius: 5px 0 20px 0;
+}
+
+.categoryContent {
+  width: 100%;
+}

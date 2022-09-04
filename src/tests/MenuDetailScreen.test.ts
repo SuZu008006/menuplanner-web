@@ -2,7 +2,7 @@ import '@testing-library/jest-dom'
 import renderApplication from './RenderApplication'
 import {AppProps} from '../App'
 import {AppPropsBuilder} from '../AppPropsBuilder'
-import {screen} from '@testing-library/react'
+import {screen, within} from '@testing-library/react'
 import {SpyStubMenuRepo} from './SpyStubMenuRepo'
 import MenuStruct from '../MenuStruct'
 
@@ -44,14 +44,17 @@ describe('menu detail screen', () => {
             ]
         }
 
-
         spyStubMenuRepo.menu_struct_returnValue = Promise.resolve(menuStructResult)
 
 
         await renderApplication('menuDetail/1', appProps)
 
 
-        expect(screen.getByText('itemNameOne,1.1,scaleOne')).toBeInTheDocument()
-        expect(screen.getByText('itemNameTwo,2.2,scaleTwo')).toBeInTheDocument()
+        const categoryElement = screen.getAllByRole('row') as HTMLElement[]
+
+        expect(within(categoryElement[0]).getByText('材料')).toBeInTheDocument()
+        expect(within(categoryElement[0]).getByText('itemNameOne,1.1,scaleOne')).toBeInTheDocument()
+        expect(within(categoryElement[1]).getByText('調味料')).toBeInTheDocument()
+        expect(within(categoryElement[1]).getByText('itemNameTwo,2.2,scaleTwo')).toBeInTheDocument()
     })
 })
