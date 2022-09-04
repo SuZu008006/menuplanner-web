@@ -72,10 +72,10 @@ describe('menu list screen', () => {
         spyStubMenuRepo.menu_returnValue = Promise.resolve(menuResult)
 
         await renderApplication('/menuList', appProps)
-        const menuElement = screen.getByText('titleOne')
+        const menuElement = screen.getAllByRole('row')
 
 
-        await userEvent.click(menuElement)
+        await userEvent.click(menuElement[0])
 
 
         expect(window.location.pathname).toEqual('/menuDetail/1')

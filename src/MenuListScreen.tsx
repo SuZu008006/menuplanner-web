@@ -31,33 +31,36 @@ export default function MenuListScreen(props: {
 
     return (
         <>
-            {dayOfWeek.map((day, index) =>
-                <div className={styles.menuRow} key={index}>
-                    <div className={styles.menuHeader}>
-                        <div className={styles.dayOfWeek}>
+            <table className={styles.table}>
+                <tbody>
+                {dayOfWeek.map((day, index) =>
+                    <tr
+                        key={index}
+                        className={styles.menuRow}
+                        onClick={() => onClickTitle(Number(menu?.[index].id))}
+                    >
+                        <td className={styles.dayOfWeek}>
                             {day}
-                        </div>
-                    </div>
-                    <div className={styles.menuContent}>
-                        <div
-                            className={styles.menuTitle}
-                            onClick={() => onClickTitle(Number(menu?.[index].id))}
-                        >
-                            {menu?.[index].title}
-                        </div>
-                        <div className={styles.imageContainer}>
-                            <div className={styles.imageShade}>
-                                <img
-                                    className={styles.menuImage}
-                                    src={menu?.[index].image}
-                                    alt={menu?.[index].image}
-                                />
-                                <div className={styles.menuImagePin}/>
+                        </td>
+                        <td className={styles.menuContainer}>
+                            <div className={styles.menuTitle}>
+                                {menu?.[index].title}
                             </div>
-                        </div>
-                    </div>
-                </div>
-            )}
+                            <div className={styles.imageContainer}>
+                                <div className={styles.imageShade}>
+                                    <img
+                                        className={styles.menuImage}
+                                        src={menu?.[index].image}
+                                        alt={menu?.[index].image}
+                                    />
+                                    <div className={styles.menuImagePin}/>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                )}
+                </tbody>
+            </table>
             <button
                 onClick={() => onClickSummary()}
                 className={styles.shoppingList}
