@@ -41,6 +41,13 @@ describe('menu detail screen', () => {
                     quantity: 2.2,
                     scale: 'scaleTwo',
                 },
+            ],
+            makeRecord: [
+                {
+                    make_id: 1,
+                    id: 1,
+                    content: "contentOne",
+                }
             ]
         }
 
@@ -61,5 +68,8 @@ describe('menu detail screen', () => {
         expect(within(categoryTrElement[2]).getByText('itemNameTwo')).toBeInTheDocument()
         expect(within(categoryTrElement[2]).getByText('2.2')).toBeInTheDocument()
         expect(within(categoryTrElement[2]).getByText('scaleTwo')).toBeInTheDocument()
+        expect(within(categoryTrElement[4]).getByText('作り方')).toBeInTheDocument()
+        expect(within(categoryTrElement[4]).getByText('step1')).toBeInTheDocument()
+        expect(within(categoryTrElement[4]).getByText('contentOne')).toBeInTheDocument()
     })
 })

@@ -62,6 +62,25 @@ export default function MenuDetailScreen(props: {
                     </table>
                 </td>
             </tr>
+            <tr className={styles.categoryContainer}>
+                <td className={styles.category}>作り方</td>
+                <td className={styles.categoryContent}>
+                    <table className={styles.subTable}>
+                        <tbody>
+                        {menuStruct?.makeRecord
+                            .map((make, index) =>
+                                <tr
+                                    className={styles.subCategoryContainer}
+                                    key={index}
+                                >
+                                    <td className={styles.tdQuantity}>step{index+1}</td>
+                                    <td className={styles.tdItem}>{make.content}</td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
             </tbody>
         </table>
     )

@@ -41,7 +41,8 @@ describe('menu summary screen', () => {
                     scale: 'scale'
                 },
             ],
-            seasoningRecord: []
+            seasoningRecord: [],
+            makeRecord: [],
         }
 
         spyStubMenuRepo.menu_struct_returnValue = Promise.resolve(menuStructResult)
@@ -73,7 +74,8 @@ describe('menu summary screen', () => {
                     scale: 'scale'
                 },
             ],
-            seasoningRecord: []
+            seasoningRecord: [],
+            makeRecord: [],
         }
 
         spyStubMenuRepo.menu_struct_returnValue = Promise.resolve(menuStructResult)
@@ -110,7 +112,8 @@ describe('menu summary screen', () => {
                     scale: 'scaleTwo'
                 },
             ],
-            seasoningRecord: []
+            seasoningRecord: [],
+            makeRecord: [],
         }
 
         spyStubMenuRepo.menu_struct_returnValue = Promise.resolve(menuStructResult)
@@ -151,7 +154,8 @@ describe('menu summary screen', () => {
                     scale: 'scaleOne'
                 },
             ],
-            seasoningRecord: []
+            seasoningRecord: [],
+            makeRecord: [],
         }
 
         spyStubMenuRepo.menu_struct_returnValue = Promise.resolve(menuStructResult)
@@ -206,7 +210,8 @@ describe('menu summary screen', () => {
                     scale: 'scale'
                 },
             ],
-            seasoningRecord: []
+            seasoningRecord: [],
+            makeRecord: [],
         }
 
         spyStubMenuRepo.menu_struct_returnValue = Promise.resolve(menuStructResult)
@@ -247,7 +252,8 @@ describe('menu summary screen', () => {
                     scale: 'scaleTwo'
                 },
             ],
-            seasoningRecord: []
+            seasoningRecord: [],
+            makeRecord: [],
         }
 
         spyStubMenuRepo.menu_struct_returnValue = Promise.resolve(menuStructResult)

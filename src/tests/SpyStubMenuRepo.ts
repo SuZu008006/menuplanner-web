@@ -10,6 +10,7 @@ export class SpyStubMenuRepo implements MenuRepo {
         menuRecord: {id: 0, title: '', image: ''},
         ingredientRecord: [],
         seasoningRecord: [],
+        makeRecord: [],
     }
     menu_returnValue: Promise<Menu[]> = Promise.resolve(this.menuResult)
     menu_struct_returnValue: Promise<MenuStruct> = Promise.resolve(this.menuStructResult)
