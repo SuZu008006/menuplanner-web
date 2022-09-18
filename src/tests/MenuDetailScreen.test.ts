@@ -69,7 +69,7 @@ describe('menu detail screen', () => {
         expect(within(categoryTrElement[2]).getByText('2.2')).toBeInTheDocument()
         expect(within(categoryTrElement[2]).getByText('scaleTwo')).toBeInTheDocument()
         expect(within(categoryTrElement[4]).getByText('作り方')).toBeInTheDocument()
-        expect(within(categoryTrElement[4]).getByText('step1')).toBeInTheDocument()
+        expect(within(categoryTrElement[4]).getByText('1')).toBeInTheDocument()
         expect(within(categoryTrElement[4]).getByText('contentOne')).toBeInTheDocument()
     })
 })

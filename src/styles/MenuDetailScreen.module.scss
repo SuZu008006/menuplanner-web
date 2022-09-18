@@ -22,7 +22,7 @@
   background-color: $tints9;
   border-radius: 5px;
   color: $shades9;
-  align-items: flex-end;
+  align-items: flex-start;
 }
 
 .category {
@@ -30,8 +30,7 @@
   top: 40px;
 
   font-weight: bold;
-  width: 20%;
-  max-width: 80px;
+  width: 80px;
   height: 40px;
   display: flex;
   justify-content: center;
@@ -57,4 +56,20 @@
 
 .tdScale {
   width: 60px;
+}
+
+.tdStep {
+  margin-right: 10px;
+  padding-right: 4px;
+  width: 10px;
+  border-right: 2px solid $shades9;
+}
+
+.stepPoint {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 6px 6px;
+  border-color: transparent transparent $shades9 transparent;
+  margin: 0 0 0 auto;
 }

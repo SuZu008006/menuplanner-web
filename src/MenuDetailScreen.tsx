@@ -73,7 +73,10 @@ export default function MenuDetailScreen(props: {
                                     className={styles.subCategoryContainer}
                                     key={index}
                                 >
-                                    <td className={styles.tdQuantity}>step{index+1}</td>
+                                    <td className={styles.tdStep}>
+                                        {index+1}
+                                        <div className={styles.stepPoint}></div>
+                                    </td>
                                     <td className={styles.tdItem}>{make.content}</td>
                                 </tr>
                             )}
